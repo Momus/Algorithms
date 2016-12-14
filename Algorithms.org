@@ -1,0 +1,8 @@
+* Setup
+  First Problem: create and execute a java program with emacs.
+*** Java from the [[http://algs4.cs.princeton.edu/linux/][course site]]
+*** move algs4.jar to ~/usr/src/java
+*** modify ~/bin/java[c]-algs4 to point to algs4.jar
+* 
+
+  

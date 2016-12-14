@@ -1,3 +1,6 @@
+#Ignore Emacs backup files
+*~
+
 *ayne.pdf
 
 *.class
