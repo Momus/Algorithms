@@ -2,12 +2,11 @@ import java.math.BigInteger ;
 
 public class EuclidsGCD {
 
+    
     public static void main (String[] args) {
 	BigInteger p = new BigInteger(args[0]) ;
 	BigInteger q = new BigInteger(args[1]) ;
-	BigInteger[] WhatAUselessWayToPassArgs = new BigInteger[2];
-	WhatAUselessWayToPassArgs[0] = p ;
-	WhatAUselessWayToPassArgs[1] = q ;
+	BigInteger[] WhatAUselessWayToPassArgs =  { p, q } ;
 
 	BigInteger[] thisGCD = gcd(WhatAUselessWayToPassArgs) ;
 	BigInteger theAnswer = thisGCD[0] ;

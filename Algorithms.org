@@ -1,8 +1,21 @@
+* How to learn as little Java as Possible.
+  
 * Setup
   First Problem: create and execute a java program with emacs.
 *** Java from the [[http://algs4.cs.princeton.edu/linux/][course site]]
-*** move algs4.jar to ~/usr/src/java
-*** modify ~/bin/java[c]-algs4 to point to algs4.jar
+***** move algs4.jar to ~/usr/src/java
+***** modify ~/bin/java[c]-algs4 to point to algs4.jar
+*** Emacs
+***** JDEE Mode
+***** Install Maven 3 for [[https://github.com/jdee-emacs/jdee-server][JDEE server]]
+*** Maven
+***** Install: just copy to /opt and make some symlinks
+***** Set up project
+      Using [[http://books.sonatype.com/mvnex-book/reference/simple-project-sect-create-simple.html][this book]]
+******* mvn archetype:generate -DgroupID=org.momus.algorithms
+******* mvn install --dowload deps, build project, run tests
+
+*** Checkstyle
 * 
 
   

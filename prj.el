@@ -1,3 +1,5 @@
 (jdee-project-file-version "1.0")
 (jdee-set-variables)
 (setq jdee-server-dir ".")
+(require 'jdee-checkstyle)
+(setq jdee-checkstyle-classpath '("/home/kwaku/repos/learnin/Algorithms/"))
