@@ -1,3 +1,5 @@
+package org.momus.algorithms;
+
 import java.math.BigInteger ; 
 
 public class EuclidsGCD {
