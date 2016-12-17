@@ -8,14 +8,30 @@
 *** Emacs
 ***** JDEE Mode
 ***** Install Maven 3 for [[https://github.com/jdee-emacs/jdee-server][JDEE server]]
+***** XML
+******* Install trang
+********* [[https://code.google.com/archive/p/jing-trang/downloads][Download]]
+********* make small script in ~/usr/bin
+***** Checkstyle
+      jdee expects the jar file in a very specific
+      place. (.emacs.d/elisp/wherever_the_packages_installed/java/ et
+      .c) I put it there until I can find a better location.
 *** Maven
 ***** Install: just copy to /opt and make some symlinks
 ***** Set up project
       Using [[http://books.sonatype.com/mvnex-book/reference/simple-project-sect-create-simple.html][this book]]
 ******* mvn archetype:generate -DgroupID=org.momus.algorithms
 ******* mvn install --dowload deps, build project, run tests
-
+******* Customize Project information.
+******* Install the Algs4 libraries:
+	mvn install:install-file \
+	-Dfile=algs4.jar \
+	-DgroupId=some.group \
+	-DartifactId=non-maven-proj \
+	-Dversion=1 -Dpackaging=jar
 *** Checkstyle
+***** using maven:
+***** install jalopy plugin.
 * 
 
   
