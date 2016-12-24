@@ -21,7 +21,16 @@
     :PROPERTIES:
     :CUSTOM_ID: Intro
     :END:      
-* Setup
+
+*** Motivation
+    Robert Sedgwick's textbook introduced a generation of students to
+    the study of Algorithms. There are few better
+    introductions. Unfortunately, he uses Java to teach his classes,
+    but hopefully not so much Java that a Ruby programmer should be
+    able to succeed in the class with a little advanced preparation. 
+
+
+* Setup 
   :PROPERTIES:
   :CUSTOM_ID: setup
   :END:      

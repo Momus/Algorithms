@@ -36,4 +36,4 @@
 ;; Make sure direcotry is mounted:
 ;; sshfs woland@tilde.town:/home/woland/public_html/algorithms /home/kwaku/repos/learnin/algorithms/html
 
-M-x org-publish-project
+;M-x org-publish-project
