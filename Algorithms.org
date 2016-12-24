@@ -28,8 +28,6 @@
     introductions. Unfortunately, he uses Java to teach his classes,
     but hopefully not so much Java that a Ruby programmer should be
     able to succeed in the class with a little advanced preparation. 
-
-
 * Setup 
   :PROPERTIES:
   :CUSTOM_ID: setup
@@ -75,7 +73,6 @@
       :PROPERTIES:
       :CUSTOM_ID: setup-maven
       :END:      
-
 ***** Install: just copy to /opt and make some symlinks
 ***** Set up project
       Using [[http://books.sonatype.com/mvnex-book/reference/simple-project-sect-create-simple.html][this book]]
