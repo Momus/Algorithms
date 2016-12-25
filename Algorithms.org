@@ -85,6 +85,10 @@
 	-DgroupId=some.group \
 	-DartifactId=non-maven-proj \
 	-Dversion=1 -Dpackaging=jar
+******* Run your class with agruments:
+	- mvn -X -e exec:java -Dexec.mainClass=org.momus.algorithms.EuclidsGCD  -Dexec.args="340 1200"
+	- -X adds logs of dubugging information.
+******* 
 *** Checkstyle
       :PROPERTIES:
       :CUSTOM_ID: setup-checkstyle
