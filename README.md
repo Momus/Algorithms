@@ -1,0 +1,1 @@
+This is my public repo for working through the Robert Sedgewick Algorithms course. It is designed to be used with Maven, and Algorithms.org should have lots and lots of info.
