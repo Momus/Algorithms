@@ -14,9 +14,8 @@ public class EuclidsGCD {
 	BigInteger theAnswer = thisGCD[0] ;
 	
 	System.out.print( theAnswer.toString() + "\n" ) ;
-	
-	
-    } 
+
+    }
 
     
     /**

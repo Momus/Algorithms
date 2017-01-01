@@ -1,13 +1,16 @@
+package org.momus.algorithms;
 /** 
 
 This is a little program to test my environment.
 
 */
 
-//import algs4
+
+import edu.princeton.cs.algs4.StdOut;
+
 
 public class HelloWorld {
     public static void main(String[] args) {
-	System.out.print("¡ Hola Mundo !\n") ;
+	StdOut.print("¡ Hola Mundo !\n");
     }
 }

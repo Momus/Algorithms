@@ -40,24 +40,24 @@
 ***** move algs4.jar to ~/usr/src/java
 ***** modify ~/bin/java[c]-algs4 to point to algs4.jar
 *** Emacs
-      :PROPERTIES:
-      :CUSTOM_ID: setup-emacs
-      :END:      
-***** JDEE Mode
-      :PROPERTIES:
-      :CUSTOM_ID: setup-emacs-jdee
-      :END:      
-
-***** Install Maven 3 for [[https://github.com/jdee-emacs/jdee-server][JDEE server]]
-            :PROPERTIES:
-      :CUSTOM_ID: setup-emacs-maven
-      :END:      
-
-***** XML
+    :PROPERTIES:
+    :CUSTOM_ID: setup-emacs
+    :END:      
+***** Eclim
+	:PROPERTIES:
+	:CUSTOM_ID: setup-emacs-eclim
+	:END:      
+	After trying to get everything working with jdee-mode for a
+	couple days, I found this [[http://www.goldsborough.me/emacs,/java/2016/02/24/22-54-16-setting_up_emacs_for_java_development/][great tutorial]], and so I gave it up
+	and tried eclim. Surprisingly, it wasn't so bad.
+******* Install algs4 jar
+	Have to use [[http://wiki.eclipse.org/FAQ_How_do_I_add_an_extra_library_to_my_project%27s_classpath%3F][Eclipse]]. The only way I found to do that is to leave a copy of
+	algs4.jar in projectroot/lib, fire up Eclipse, the add by
+	going to  Properties > Java Build Path > Libraries
+***** TODO XML
       :PROPERTIES:
       :CUSTOM_ID: setup-emacs-xml
       :END:      
-
 ******* Install trang
 ********* [[https://code.google.com/archive/p/jing-trang/downloads][Download]]
 ********* make small script in ~/usr/bin
@@ -70,6 +70,16 @@
       place. (.emacs.d/elisp/wherever_the_packages_installed/java/ et
       .c) I put it there until I can find a better location.
 *** Maven
+    #+BEGIN_SRC latex
+      Originally, the motivation for using Maven 3 was because Jdee was so
+      tightly integrated with it, that it seemed easier to figure out Maven
+      than to figure out how to use Jdee without it.  However, at about the
+      same time as I figured out Maven, I also figured out that ecvim-mode
+      was the way to go. However, Maven seemed so useful as a
+      meta-framework, that I continued using it for this project.
+    #+END_SRC
+    Originaly, I tried setting up this project wiht Maven 3 because
+    that seemed to be tightly integraged into
       :PROPERTIES:
       :CUSTOM_ID: setup-maven
       :END:      
@@ -80,22 +90,45 @@
 ******* mvn install --dowload deps, build project, run tests
 ******* Customize Project information.
 ******* Install the Algs4 libraries:
-	mvn install:install-file \
-	-Dfile=algs4.jar \
-	-DgroupId=some.group \
-	-DartifactId=non-maven-proj \
-	-Dversion=1 -Dpackaging=jar
+	After inability to get Maven to include a simple algs4.jar
+	file without wanting POMs and god-knows what, I found this method in Maven Central:
+	#+BEGIN_SRC nxml
+          <dependency>
+              <groupId>com.googlecode.princeton-java-algorithms</groupId>
+              <artifactId>algorithms</artifactId>
+              <version>4.0.1</version>
+          </dependency>
+	#+END_SRC
+	and now the statement `
 ******* Run your class with agruments:
 	- mvn -X -e exec:java -Dexec.mainClass=org.momus.algorithms.EuclidsGCD  -Dexec.args="340 1200"
 	- -X adds logs of dubugging information.
-******* 
+******* mvn eclipse:eclipse
+	will make it into an Eclipse project for use with eclim
+*** Projectile
+    
 *** Checkstyle
       :PROPERTIES:
       :CUSTOM_ID: setup-checkstyle
       :END:      
 ***** using maven:
 ***** install jalopy plugin.
-* Now this all goes Live!
-  org-mode-publish project to tilde.town
-
+* Useful Class Notes
+*** Union Find
+***** Dynamic Connectivity
+      Given a set of N objects:
+      - Union Command :: connets the two objects
+      - Find/Connect Query :: finds if path between objects exists
+***** Modeling the Objects
+      "is connected to" is an equivalence relation[fn:er]:
+      - reflexive :: if /p/ is connected to /p/ 
+      - symmetric :: if /p/ is connected to /q/, then /q/ is connected to /p/
+***** 
+* How this was published
   
+*** TODO Incorporate ./publish.el into this document
+
+* Footnotes
+
+[fn:er] equivalence relation :: a binary relation that is at the same
+time a reflexive relation, a symmetric relation, and a transative relation.

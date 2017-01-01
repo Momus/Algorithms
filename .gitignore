@@ -1,3 +1,13 @@
+####Ignore Files that are answers to assignments!
+
+## (Hint, if a file is listed here, it's one that is supposed to be
+## submitted for grading. If you need to see it, please message me,
+## and I can provide access if you're not cheating!
+Percolation.java
+PercolationStats.java
+
+
+
 #Ignore Emacs backup files
 *~
 *#*
