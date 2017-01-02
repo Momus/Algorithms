@@ -49,10 +49,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-   <groupId>com.googlecode.princeton-java-algorithms</groupId>
-    <artifactId>algorithms</artifactId>
-    <version>4.0.1</version>
- </dependency>
+      <groupId>edu.princeton.cs</groupId>
+      <artifactId>algs4</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
   
 </project>

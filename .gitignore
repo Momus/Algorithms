@@ -16,8 +16,11 @@ PercolationStats.java
 /lib
 /tmp
 
-#At least for now, ignore the auto-generated ./target directory
+#Ignore the auto-generated ./target directory
 /target
+
+#Eclim-emacs seems to generate these workbench.xmi files Do not want
+workbench.xmi
 
 
 #I keep a copy of my book on the local machine, but it doesn't need to
