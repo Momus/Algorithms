@@ -1,5 +1,6 @@
 ;;http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
 
+;;; Code:
 (require 'ox-publish)
 (setq org-publish-project-alist
       '(
@@ -37,3 +38,5 @@
 ;; sshfs woland@tilde.town:/home/woland/public_html/algorithms /home/kwaku/repos/learnin/algorithms/html
 
 ;M-x org-publish-project
+;then: 
+; scp html/Algorithms.html woland@tilde.town:~/public_html/algorithms

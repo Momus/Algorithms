@@ -70,6 +70,8 @@
       place. (.emacs.d/elisp/wherever_the_packages_installed/java/ et
       .c) I put it there until I can find a better location.
 *** Maven
+    :PROPERTIES:
+    :END:
     #+BEGIN_SRC latex
       Originally, the motivation for using Maven 3 was because Jdee was so
       tightly integrated with it, that it seemed easier to figure out Maven
@@ -103,8 +105,39 @@
 ******* Run your class with agruments:
 	- mvn -X -e exec:java -Dexec.mainClass=org.momus.algorithms.EuclidsGCD  -Dexec.args="340 1200"
 	- -X adds logs of dubugging information.
-******* mvn eclipse:eclipse
-	will make it into an Eclipse project for use with eclim
+******* mvn eclipse plugin
+********* run the eclipse plugin
+	  #+BEGIN_SRC 
+	  mvn eclipse:eclipse
+	  #+END_SRC
+********* Don't forget to set up your "workspace" if it is in a different location
+	  You have to run this after eclipse:eclipse. If you get into
+	  trouble, run eclipse:clean and try again.
+	  #+BEGIN_SRC sh
+            mvn eclipse:configure-workspace -Declipse.workspace=/home/kwaku/usr/src/java/workspace
+	  #+END_SRC
+***** Running Projece code
+      :PROPERTIES:
+      :EXPORT_OPTIONS: both
+      :DIR: ~/repos/learnin/algorithms
+      :FORMAT: raw
+      :END:
+    :PROPERTIES:
+    :dir ~/repos/learnin/algorithms/
+    :exports both
+    :END:
+      #+BEGIN_SRC sh
+        mvn exec:java -Dexec.mainClass="org.momus.algorithms.HelloWorld" \
+        | grep -v INFO
+
+        mvn exec:java -Dexec.mainClass="org.momus.algorithms.EuclidsGCD" \
+        -Dexec.args="24 58" | grep -v INFO
+      #+END_SRC
+
+      #+RESULTS:
+      | ¡ | Hola | Mundo | ! |
+      | 2 |      |       |   |
+
 *** Projectile
     
 *** Checkstyle
@@ -113,7 +146,12 @@
       :END:      
 ***** using maven:
 ***** install jalopy plugin.
-* Useful Class Notes
+* Testing
+  The barebones Maven project already set us up with a testing
+  framework: JUnit. Since it's here, why not use it? 
+*** 
+
+* Week 1
 *** Union Find
 ***** Dynamic Connectivity
       Given a set of N objects:
@@ -123,7 +161,25 @@
       "is connected to" is an equivalence relation[fn:er]:
       - reflexive :: if /p/ is connected to /p/ 
       - symmetric :: if /p/ is connected to /q/, then /q/ is connected to /p/
-***** 
+
+
+*** Programing Assignments
+    :PROPERTIES:
+    :END:
+    #+BEGIN_SRC sh  :results value verbatim
+      mvn exec:java -Dexec.mainClass="org.momus.algorithms.HelloWorld" | grep -v INFO
+      mvn exec:java -Dexec.mainClass="org.momus.algorithms.EuclidsGCD"  -Dexec.args="24 58" | grep -v INFO
+    #+END_SRC
+
+    #+RESULTS:
+    : ¡ Hola Mundo !
+    : 2
+ 
+ 
+
+
+
+
 * How this was published
   
 *** TODO Incorporate ./publish.el into this document
