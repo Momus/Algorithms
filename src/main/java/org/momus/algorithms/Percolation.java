@@ -21,41 +21,40 @@
 *  
 *
  ******************************************************************************/
-
 package org.momus.algorithms;
 
 
-import edu.princeton.cs.algs4.QuickFindUF;
-
+import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+ 
 
 
 public class Percolation {
 
     // N is the total elements in the system n^2 = N
-    public int N = 0;
+    private int N;
     // little n, the length of a single row, is also stored for
     // conveniance for now.
-    public int n = 0;
+    private int n;
 
-    //These are the two data structures which represent the semi-porus
+    //These are the two data structures which represent the semi-porous
     //system:
-    public boolean[] grid;
-    public QuickFindUF connections;
+    private boolean[] grid;
+    private WeightedQuickUnionUF connections;
 
     
     /**
      * n-by-n grid, initially with all sites blocked.
      */
     public Percolation(int rowLength)  {
-	this.n = rowLength;
-	this.N = n * n;
-	this.grid = new boolean[N];
+	n = rowLength;
+	N = n * n;
+	grid = new boolean[N];
 	//Set all sites to false explicitly.
 	for ( int i = 0; i < N; i++) {
 		this.grid[i] = false;
 	    }
 	
-	this.connections = new QuickFindUF(N);
+	connections = new WeightedQuickUnionUF(N);
 	
     }
     
@@ -67,55 +66,58 @@ public class Percolation {
 	
     public void open(int row, int col) {
 	int target = index(row, col);
-	this.grid[target] = true;
+
+	//Open the square
+	grid[target] = true;
 
 	// Check to see if any of the adjacent cells are also open, if
-	// so, "connect them." Check to see if the cells are 
+	// so, "connect them."
 	
 	// if target is not in the top row
-	if ( target > (n -1) ) {
-	    // get the cell below
+	if ( target >= n  ) {
+	    // get the cell above
 	    int below = index( row - 1, col );
 	    // connect it if it's open
-	    if (this.grid[below])
-		{ this.connections.union(target, below); }
+	    if (grid[below])
+		{ connections.union(target, below); }
 	};
 
 	
 	// if target is not in the bottom row
-	if ( target > (N - n) ) {
-	    // get the cell above
+	if ( target < (N - n) ) {
+	    // get the cell below
 	    int above = index( row + 1 , col ) ;
-	    // connect it if it's open
-	    if (this.grid[above])
-		{ this.connections.union(target, above); };
+	     // connect it if it's open
+	    if (grid[above])
+		{ connections.union(target, above); };
 	};
 
 	// if target isn't in the leftmost column
 	if ( target != 0 ) {
 	    if ( (N % target) != 0) {
-		// get its less woke neighbor.
-		int left = index( row, col + 1) ;
-		if (this.grid[left])
-		    { this.connections.union(target, left); }
+		// get its more woke neighbor to the left
+		int left = index( row, col - 1) ;
+		if (grid[left])
+		    { connections.union(target, left); }
 	    };
 	    
 	    // If not in the regressive rightmost row.
-	    if ( N % (target + 1) == 0 ) {
-		int right = index( row, col - 1 ) ;
-		if (this.grid[right])
-		{ this.connections.union(target, right); }
+	    if ( N % (target + 1) != 0 ) {
+		int right = index( row, col + 1 ) ;
+		if (grid[right])
+		{ connections.union(target, right); }
 	    };
 	};
     }
 
     
     public boolean isOpen(int row, int col){
-	return this.grid[index(row,col)];
+	return grid[index(row,col)];
     }
 
     
-    public int numberOfOpenSites(){
+    public int numberOfOpenSites() {  
+
 	int count = 0;
 	 for ( int i = 0; i < N; i++)
 	     if (grid[i]) {
@@ -135,8 +137,8 @@ public class Percolation {
 
 	if ( isOpen(row, col) ) {
 	    // "Top row" are cells with indices 0 --n -1
-	    while (i < (n-1) ){
-		if ( this.connections.connected(i, target) ) {
+	    while (i < n ){
+		if ( connections.connected(i, target) ) {
 		    test = true; };
 		i++;
 	    };

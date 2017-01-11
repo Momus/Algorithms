@@ -167,14 +167,39 @@
     :PROPERTIES:
     :END:
     #+BEGIN_SRC sh  :results value verbatim
-      mvn exec:java -Dexec.mainClass="org.momus.algorithms.HelloWorld" | grep -v INFO
-      mvn exec:java -Dexec.mainClass="org.momus.algorithms.EuclidsGCD"  -Dexec.args="24 58" | grep -v INFO
+      mvn exec:java -Dexec.mainClass="org.momus.algorithms.PercolationStats"  -Dexec.args="40  100" | grep -v INFO
     #+END_SRC
 
     #+RESULTS:
-    : ¡ Hola Mundo !
-    : 2
+    : mean                    = 0.006406249999999987
+    : stddev                  = 0.05781249999999993
+    : 95% confidence interval = -0.0049250000000000006, 0.017737499999999976
  
+***  Testing
+    #+BEGIN_SRC sh :results verbatim
+      mvn -f /home/kwaku/repos/learnin/algorithms/pom.xml  test | grep -v INFO
+    #+END_SRC
+
+    #+RESULTS:
+    #+begin_example
+
+    -------------------------------------------------------
+     T E S T S
+    -------------------------------------------------------
+    Running org.momus.algorithms.AppTest
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
+    Running org.momus.algorithms.PercolationTest
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+    Running org.momus.algorithms.EuclidsGCDTest
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+    Running org.momus.algorithms.PercolationStatsTest
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+
+    Results :
+
+    Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+#+end_example
  
 
 
