@@ -51,7 +51,7 @@ public class PercolationStats {
     
     private int N;
 
-    private ArrayList<Integer> positionsRemaining = new ArrayList<Integer>() ;
+    
 
     
     /**
@@ -60,9 +60,9 @@ public class PercolationStats {
      *
      * @return { row, col }
      */
-    private int[] grabASpot() {
-	int index = StdRandom.uniform( positionsRemaining.size() );
-	int sweetSpot = positionsRemaining.remove( index  ) ;
+    private int[] grabASpot(ArrayList<Integer> testList) {
+	int index = StdRandom.uniform( testList.size() );
+	int sweetSpot = testList.remove( index  ) ;
 	int[] sweetCartesians = deIndex(sweetSpot);
 	return sweetCartesians;
     }
@@ -104,11 +104,12 @@ public class PercolationStats {
 	results = new double[trials];
 
 	//fill the array used to keep track of empty spaces with consecutive integers.
-	positionsRemaining = new ArrayList<Integer>(N);
+	ArrayList<Integer> listOfClosedPositions = new ArrayList<Integer>(N) ;
+
 	int z = 0;
-	while (positionsRemaining.size() < N) {
+	while (listOfClosedPositions.size() < N) {
 	    Integer zz = z;
-	    positionsRemaining.add(z, zz);
+	    listOfClosedPositions.add(z, zz);
 	    z++;
 	};
 
@@ -116,12 +117,13 @@ public class PercolationStats {
 	int run = 0;
 	while ( run < trials) {
 
+	    ArrayList<Integer> testList = new ArrayList<Integer>(listOfClosedPositions);
 	// Conduct a test. 
 	    int counter = 0;
 	
 	    do {
 		//
-		int[] coordinate = grabASpot();
+		int[] coordinate = grabASpot(testList);
 		testCase.open(coordinate[0], coordinate[1]);
 		
 		counter += 1;

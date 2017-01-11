@@ -167,13 +167,13 @@
     :PROPERTIES:
     :END:
     #+BEGIN_SRC sh  :results value verbatim
-      mvn exec:java -Dexec.mainClass="org.momus.algorithms.PercolationStats"  -Dexec.args="40  100" | grep -v INFO
+      mvn exec:java -Dexec.mainClass="org.momus.algorithms.PercolationStats"  -Dexec.args="20  400" | grep -v INFO
     #+END_SRC
 
     #+RESULTS:
-    : mean                    = 0.006406249999999987
-    : stddev                  = 0.05781249999999993
-    : 95% confidence interval = -0.0049250000000000006, 0.017737499999999976
+    : mean                    = 0.004074999999999947
+    : stddev                  = 0.03150000000000037
+    : 95% confidence interval = 9.879999999999108E-4, 0.007161999999999983
  
 ***  Testing
     #+BEGIN_SRC sh :results verbatim
@@ -186,13 +186,13 @@
     -------------------------------------------------------
      T E S T S
     -------------------------------------------------------
-    Running org.momus.algorithms.AppTest
-    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
     Running org.momus.algorithms.PercolationTest
-    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
-    Running org.momus.algorithms.EuclidsGCDTest
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec
+    Running org.momus.algorithms.AppTest
     Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
     Running org.momus.algorithms.PercolationStatsTest
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+    Running org.momus.algorithms.EuclidsGCDTest
     Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
 
     Results :
