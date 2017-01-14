@@ -167,13 +167,13 @@
     :PROPERTIES:
     :END:
     #+BEGIN_SRC sh  :results value verbatim
-      mvn exec:java -Dexec.mainClass="org.momus.algorithms.PercolationStats"  -Dexec.args="20  400" | grep -v INFO
+      mvn exec:java -Dexec.mainClass="org.momus.algorithms.PercolationStats"  -Dexec.args="10  10" | grep -v INFO
     #+END_SRC
 
     #+RESULTS:
-    : mean                    = 0.004074999999999947
-    : stddev                  = 0.03150000000000037
-    : 95% confidence interval = 9.879999999999108E-4, 0.007161999999999983
+    : mean                    = 0.06500000000000002
+    : stddev                  = 0.1739252713092609
+    : 95% confidence interval = -0.04279999999999999, 0.1728
  
 ***  Testing
     #+BEGIN_SRC sh :results verbatim
@@ -187,7 +187,7 @@
      T E S T S
     -------------------------------------------------------
     Running org.momus.algorithms.PercolationTest
-    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec
+    Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.01 sec
     Running org.momus.algorithms.AppTest
     Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
     Running org.momus.algorithms.PercolationStatsTest

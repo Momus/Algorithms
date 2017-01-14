@@ -72,14 +72,11 @@ public class PercolationStats {
      * Turns an index of a square matrix into its Cartesian
      * coordiantes.
      *
-     * @return { row , col }
+     * @return { int row , int col }
      **/
     private int[] deIndex(int index) {
-	// in this case, the peculiarities of integer division should
-	// help.
-	int row = ( index / n );
-	//careful not to take the modulus of zero
-	int col =  index == 0 ? 0 : ( index % n );
+	int row = ( index / n ); //peculiarities of integer division
+	int col =  index == 0 ? 0 : ( index % n ); //don't take the modulus of zero
 	int z[] = {row, col};
 	return z;
     }
