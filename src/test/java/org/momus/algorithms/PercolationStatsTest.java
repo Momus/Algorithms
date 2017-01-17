@@ -4,14 +4,23 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.lang.reflect.*;
+
+
+
 
 /**
  * Unit test for simple App.
  */
-public class PercolationStatsTest 
+public class PercolationStatsTest
+
     extends TestCase
 {
-    /**
+
+	
+	public static Field[] length;
+	
+	/**
      * Create the test case
      *
      * @param testName name of the test case
@@ -34,10 +43,22 @@ public class PercolationStatsTest
      */
     public void testStats()
     {
-	PercolationStats testStatCase = new PercolationStats(10,10);
+	PercolationStats percRun = new PercolationStats(4, 10);
+
+	//length = PercolationStats.class.getFields();
+	
+	//Method deIndexMethod = PercolationStats.getDeclairedMethod(deIndex);
+	//length.setAccessible("true");
 	//assertEquals("Results array is right size", 100, testStatCase.results.length);
-	//assertEquals("Number of trials correct", 100, testStatCase.trials);
+	//assertEquals("Number of trials correct", 100, testStatsCase.trials);
 	//assertEquals("N must be n", 10, testStatCase.n);
-	assertFalse( (testStatCase.mean() == 0) );
+	//assertFalse( (testStatCase.mean() == 0) );
+    }
+    
+    public static void main( String args[])
+    {
+    	//for (Field f : length )
+    	//System.out.print(f);
     }
 }
+

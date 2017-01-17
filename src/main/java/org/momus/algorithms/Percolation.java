@@ -12,7 +12,7 @@
  *
  *  public class Percolation {
  *                 // create n-by-n grid, with all sites blocked
- *  public    void open(int row, int col)    // open site (row, col) if it is not open already
+ *  public    void open(int row, int col)    // open site (row, col) if it isn't already
  *  public boolean isOpen(int row, int col)  // is site (row, col) open?
  *  public boolean isFull(int row, int col)  // is site (row, col) full?
  *  public     int numberOfOpenSites()       // number of open sites
@@ -38,8 +38,8 @@ public class Percolation {
     private int n;  //length of a single virtual row.
     private int N;  //total elements in the system == n^2
 
-    public boolean[] grid;
-    public WeightedQuickUnionUF connections;
+    private boolean[] grid;
+    private WeightedQuickUnionUF connections;
 
     /**
      * Take a cartesian representation of a cell
@@ -59,13 +59,19 @@ public class Percolation {
      */
     public Percolation(int n)  {
 
+	
 	this.n = n;
 	this.N = n * n;
-
+	
+	if (n < 1 ) {
+	    throw new IllegalArgumentException ( String.valueOf(n) + " is less than one.");
+	};
+	
+	
 	/**
 	 * Per Java default, all boolean arrays are initialized with
 	 * all values set to "false," which represents the closed
-	 * state.
+	 * state in this model.
 	 **/ 
 	this.grid = new boolean[N];
 
@@ -83,42 +89,51 @@ public class Percolation {
      *
      * @param int row, int column
      */
-    public void open(int row, int col) {
+    public void open(int r, int c) {
+	//Convert external 1-based row, col represntation to zero
+	//based.
+	int row = r - 1;
+	int col = c - 1;
 
-	if ( (row >= n) || (col >= n) ) {
-	    throw new IllegalArgumentException ("Trying to open cell not in the grid: "
+	if ( (row >=n) || (col >= n) ) {
+	    throw new IndexOutOfBoundsException ("Trying to open cell not in the grid: "
 						+ "row: " +String.valueOf(row)
-						+ ", col: " +String.valueOf(col));
+						+ ", col: " +String.valueOf(col)
+						+ ", n: " + String.valueOf(n)); 
 						};
 	    
 
 	int cell = index(row, col);
 
-	grid[cell] = true; //mark it open
-
-	
-	int above = cell - n;
-	if  ( (row > 0) && grid[above] ) {
-	    connections.union(cell, above);
-	};
-
-	int below = (cell + n);
-	if ( (row < n) && (below < N) && grid[below]  ) {
-	    connections.union(cell, below);
-	};
-	
-	int left = (cell - 1); 
-	if ( (col > 0) && grid[left] ) {
-	    connections.union(cell, left);
-	};
-	
-	int right = (cell + 1);
-	if ( (col < (n - 1)) && grid[right]  )  {
-	    connections.union(cell, right);
+	if (!grid[cell]){
 	    
-	};
+	    grid[cell] = true;
+	
+	    int above = cell - n;
+	    if  ( (row > 0) && grid[above] ) {
+		connections.union(cell, above);
+		
+	    };
 
-	 
+	    int below = (cell + n);
+	    if ( (row < n) && (below < N) && grid[below]  ) {
+		connections.union(cell, below);
+		
+	    };
+	
+	    int left = (cell - 1); 
+	    if ( (col > 0) && grid[left] ) {
+		connections.union(cell, left);
+		
+	    };
+	
+	    int right = (cell + 1);
+	    if ( (col < (n - 1)) && grid[right]  )  {
+		connections.union(cell, right);
+		
+	    };
+
+	};
     }
 
     
@@ -129,9 +144,21 @@ public class Percolation {
      * @param row, col : the ordered pair representations of a cell
      * address.
      **/
-    public boolean isOpen(int row, int col){
-
-	return grid[index(row,col)];
+    public boolean isOpen(int r, int c){
+	//Convert external 1-based row, col represntation to zero
+	//based.
+	int row = r - 1;
+	int col = c - 1;
+	
+	int target = index(row,col);
+	if (target > (N - 1)){
+	    throw new IndexOutOfBoundsException ("Can't check a cell outside matrix: "
+						+ "row: " +String.valueOf(row)
+						+ ", col: " +String.valueOf(col)
+						+ ", n: " + String.valueOf(n)); 
+	};
+	
+	return grid[target];
     }
 
     
@@ -151,12 +178,21 @@ public class Percolation {
      * site in the top row via a chain of neighboring (left, right,
      * up, down) open sites.
     **/
-    public boolean isFull(int row, int col) {
+    public boolean isFull(int r, int c) {
 
-	int target = index(row, col);
+	// internal rows and columns are zero based,
+	int target = index(r - 1, c - 1);
 	int i = 0;
 
-	if ( isOpen(row, col) ) {
+	if ( (0 > target) || (target  > (N - 1))){
+	    throw new IndexOutOfBoundsException ("Can't check a cell outside matrix: "
+						 + "row: " +String.valueOf(r)
+						 + ", col: " +String.valueOf(c)
+						+ ", n: " + String.valueOf(n)); 
+	};
+	
+
+	if ( isOpen(r, c) ) {
 	    // "Top row" are cells with indices 0 through n - 1
 	    while (i < n ){
 		if ( connections.connected(i, target) ) {
@@ -173,11 +209,11 @@ public class Percolation {
      *  from top to bottom."
      **/
     public boolean percolates(){
+
+	int col = 1; //one-based columns
+	int bottomRow = n; //one-based!!!
 	
-	int col = 0;
-	int bottomRow = n - 1;
-	
-	while (col < n ){
+	while (col <= n  ){
 	    if ( isFull(bottomRow, col)) {
 		return true;
 	    } else col++;

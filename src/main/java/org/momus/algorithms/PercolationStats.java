@@ -61,8 +61,8 @@ public class PercolationStats {
      * @return { row, col }
      */
     private int[] grabASpot(ArrayList<Integer> testList) {
-	int index = StdRandom.uniform( testList.size() );
-	int sweetSpot = testList.remove( index  ) ;
+	int spot = StdRandom.uniform( testList.size() );
+	int sweetSpot = testList.remove( spot  ) ;
 	int[] sweetCartesians = deIndex(sweetSpot);
 	return sweetCartesians;
     }
@@ -100,7 +100,11 @@ public class PercolationStats {
 	testCase = new Percolation(n);
 	results = new double[trials];
 
-	//fill the array used to keep track of empty spaces with consecutive integers.
+	/**
+	 * Fill the array used to keep track of empty spaces with
+	 * consecutive integers. This object will be cloned in the
+	 * loop below it.
+	 **/
 	ArrayList<Integer> listOfClosedPositions = new ArrayList<Integer>(N) ;
 
 	int z = 0;
@@ -115,15 +119,14 @@ public class PercolationStats {
 	while ( run < trials) {
 
 	    ArrayList<Integer> testList = new ArrayList<Integer>(listOfClosedPositions);
-	// Conduct a test. 
+
 	    int counter = 0;
 	
 	    do {
 		//
-		int[] coordinate = grabASpot(testList);
-		testCase.open(coordinate[0], coordinate[1]);
-		
-		counter += 1;
+		int[] coordinates = grabASpot(testList);
+		testCase.open((coordinates[0] + 1), (coordinates[1] + 1));
+		counter++ ;
 	    } while ( !testCase.percolates() );
 	    
 	    results[run] = (counter * 1.0) / (N * 1.0 );  
@@ -140,23 +143,23 @@ public class PercolationStats {
     /**
      * return the arithmetic mean of the results matrix.
      *
-     */
+
     public double mean() {
 	return mean;
     };
+     */
 
 
-    /********
-    private double my_mean() {
+    public double mean() {
 	double total = 0;
 	for (double run : results) {
 	    total += run;
 	}
 
-	return total;///results.length;
+	return total/results.length ;
 
     };
-    *******/
+
     
     public double stddev() {
 
