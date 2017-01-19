@@ -42,7 +42,7 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
 
-    private Percolation testCase;
+    //   private Percolation testCase;
     private double[] results;
     private int trials;
     private int n;
@@ -97,7 +97,7 @@ public class PercolationStats {
 	    throw new IllegalArgumentException ("One or greater, please.");
 	};
 	
-	testCase = new Percolation(n);
+	
 	results = new double[trials];
 
 	/**
@@ -118,6 +118,8 @@ public class PercolationStats {
 	int run = 0;
 	while ( run < trials) {
 
+	    Percolation testCase = new Percolation(n);
+	    
 	    ArrayList<Integer> testList = new ArrayList<Integer>(listOfClosedPositions);
 
 	    int counter = 0;

@@ -43,7 +43,7 @@ public class PercolationStatsTest
      */
     public void testStats()
     {
-	PercolationStats percRun = new PercolationStats(4, 10);
+	//PercolationStats percRun = new PercolationStats(4, 10);
 
 	//length = PercolationStats.class.getFields();
 	
