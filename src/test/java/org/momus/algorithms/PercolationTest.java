@@ -48,7 +48,7 @@ public class PercolationTest extends TestCase {
 	
 	assertTrue("man Percolation after a row is opened" , testSoil.percolates() );
 
-	int loopTestSize = 300; 
+	int loopTestSize = 30; 
 	Percolation loopTest = new Percolation(loopTestSize);
 	int col = 1;
 	int index = 0;

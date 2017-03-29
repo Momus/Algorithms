@@ -43,7 +43,7 @@ import edu.princeton.cs.algs4.StdStats;
 public class PercolationStats {
 
     //   private Percolation testCase;
-    private double[] results;
+    
     private int trials;
     private int n;
     private double mean;
@@ -98,7 +98,7 @@ public class PercolationStats {
 	};
 	
 	
-	results = new double[trials];
+	double[] results = new double[trials];
 
 	/**
 	 * Fill the array used to keep track of empty spaces with
@@ -133,7 +133,7 @@ public class PercolationStats {
 	    
 	    results[run] = (counter * 1.0) / (N * 1.0 );  
 	    run++;
-	    
+	      
 	}
 	
 	//calculate the mean and stddev
@@ -153,14 +153,9 @@ public class PercolationStats {
 
 
     public double mean() {
-	double total = 0;
-	for (double run : results) {
-	    total += run;
-	}
-
-	return total/results.length ;
-
-    };
+	
+    	return mean;
+    }
 
     
     public double stddev() {
@@ -187,7 +182,7 @@ public class PercolationStats {
 	
 	PercolationStats testRun = new PercolationStats(numberz, trialz);
 	
-	StdOut.print(  "mean                    = " + Double.toString( testRun.mean() ) +"\n"
+	StdOut.print("mean                    = " + Double.toString( testRun.mean() ) +"\n"
 		     + "stddev                  = " + Double.toString( testRun.stddev() ) + "\n"
 		     + "95% confidence interval = " + Double.toString( testRun.confidenceLo() ) + ", "
 		     + Double.toString( testRun.confidenceHi() )+ "\n"

@@ -21,7 +21,7 @@
     :PROPERTIES:
     :CUSTOM_ID: Intro
     :END:      
-
+    
 *** Motivation
     Robert Sedgwick's textbook introduced a generation of students to
     the study of Algorithms. There are few better
@@ -149,9 +149,11 @@
 * Testing
   The barebones Maven project already set us up with a testing
   framework: JUnit. Since it's here, why not use it? 
-*** 
+
 
 * Week 1
+
+*** TODO Video Lectures
 *** Union Find
 ***** Dynamic Connectivity
       Given a set of N objects:
@@ -163,7 +165,7 @@
       - symmetric :: if /p/ is connected to /q/, then /q/ is connected to /p/
 
 
-*** Programing Assignments
+*** TODO Programing Assignment
     :PROPERTIES:
     :END:
     #+BEGIN_SRC sh  :results value verbatim
